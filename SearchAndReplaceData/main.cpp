@@ -1,5 +1,6 @@
 ﻿#include <iostream>
 #include <chrono>
+#include <memory>
 
 #include "searchreplacedata.h"
 
