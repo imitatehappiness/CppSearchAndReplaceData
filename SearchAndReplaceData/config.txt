@@ -1,0 +1,4 @@
+numThreads=10
+rootDir=C:/Users/imitatehappiness/Desktop/devel
+<%COLOR%>=BLACK
+<%SIZE%>=LARGE
