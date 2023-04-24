@@ -175,3 +175,4 @@ bool SearchReplaceData::parseConfig() {
     return true;
 }
 
+
