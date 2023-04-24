@@ -1,0 +1,34 @@
+# Visual Studio
+.vs/
+*.suo
+*.sdf
+*.opensdf
+*.vcxproj.user
+
+# C++ Build
+*.obj
+*.exe
+*.dll
+*.pdb
+*.ilk
+*.aps
+*.pch
+*.ncb
+*.idb
+*.res
+*.tlb
+*.tlh
+*.log
+*.tlog
+*.lastbuildstate
+*.buildsucceeded
+*.buildfailed
+*.cppclean.log
+*.manifest
+*.manifest.res
+*.ipdb
+*.iobj
+
+# Other
+Thumbs.db
+[Dd]esktop.ini

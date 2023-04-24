@@ -1,5 +1,5 @@
 numThreads=10
-rootDir=C:/Users/imitatehappiness/Desktop/devel
+rootDir=TestData/data
 <%COLOR%>=BLACK
 <%SIZE%>=LARGE
 <%FLAG%>=TRUE
