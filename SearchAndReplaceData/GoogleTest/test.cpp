@@ -77,10 +77,18 @@ TEST(TextComparisonTest, TextAreEqual4Empty) {
     ASSERT_STREQ(texts.first.c_str(), texts.second.c_str());
 }
 
-TEST(TextComparisonTest, TextAreEqual5Without≈emplates) {
+TEST(TextComparisonTest, TextAreEqual5WithoutTemplates) {
     std::string path1 = "C:/Users/imitatehappiness/Desktop/CppSearchAndReplaceData/TestData/data/1/test2.txt";
     std::string path2 = "C:/Users/imitatehappiness/Desktop/CppSearchAndReplaceData/TestData/dataforcomporation/1/test2.txt";
 
     std::pair<std::string, std::string> texts = getText(path1, path2);
     ASSERT_STREQ(texts.first.c_str(), texts.second.c_str());
+}
+
+TEST(TextComparisonTest, TextAreEqual6WithError) {
+    std::string path1 = "C:/Users/imitatehappiness/Desktop/CppSearchAndReplaceData/TestData/data/1/test2.txt";
+    std::string path2 = "C:/Users/imitatehappiness/Desktop/CppSearchAndReplaceData/TestData/dataforcomporation/1/test2.txt";
+
+    std::pair<std::string, std::string> texts = getText(path1, path2);
+    ASSERT_STREQ(texts.first.c_str(), "error");
 }
