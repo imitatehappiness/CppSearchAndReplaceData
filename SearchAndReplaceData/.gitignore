@@ -4,6 +4,7 @@
 *.sdf
 *.opensdf
 *.vcxproj.user
+*.vcxproj.filters
 
 # C++ Build
 *.obj
