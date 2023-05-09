@@ -37,12 +37,7 @@ SearchReplaceData::~SearchReplaceData() {
  \param path путь до файла
  \details 1. Чтение файлов: Сначала создается объект ifstream для открытия файла (путь к которому передается в параметре функции).
              Если файл не удалось открыть, выводится сообщение об ошибке и функция завершается.
-             Затем создаются необходимые переменные: мьютекс (mutex), который будет использоваться для блокировки доступа к файлу из нескольких потоков,
-             количество потоков, которые будут использоваться для чтения файла, и вектор futures для хранения результатов асинхронных операций чтения файла в строку.
-             Далее в цикле создаются задачи на чтение файла в строку в несколько потоков с помощью функции std::async и добавляются в вектор futures.
-             Каждая задача выполняется в отдельном потоке, блокируя мьютекс для доступа к файлу.
-             После завершения выполнения всех задач из вектора futures полученные строки конкатенируются в одну строку.
-             После чтения файла файл закрывается.
+             Данные считываются в ss при помощи file.rdbuf(). После чего файл закрывается.
           2. Замена шаблонов: Сначала из конфигурационного файла получаются все необходимые пары значений для замены,
              которые сохраняются в векторе replacements.
              Затем, для каждой пары значений из вектора производится замена всех вхождений шаблона r.first в строке contents на соответствующее значение r.second.
@@ -57,23 +52,11 @@ void SearchReplaceData::parseFile(const std::string& path) {
         std::cout << "Failed to open file: " << path << std::endl;
         return;
     }
-    std::mutex m;
-    int numTreads = mConfigFileData->numThreads;
-    std::vector<std::future<std::string>> futures;
 
-    for (int i = 0; i < numTreads; i++) {
-        futures.push_back(std::async(std::launch::async, [&file, &m]() {
-            std::lock_guard<std::mutex> lock(m);
-            std::stringstream ss;
-            ss << file.rdbuf();
-            return ss.str();
-            }));
-    }
+    std::stringstream ss;
+    ss << file.rdbuf();
 
-    std::string contents = "";
-    for (auto& future : futures) {
-        contents += future.get();
-    }
+    std::string contents = ss.str();
 
     file.close();
 
